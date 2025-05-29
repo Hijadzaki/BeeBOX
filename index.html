@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BeeBox CSS — Уровни</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Левая панель -->
+    <div class="left-panel">
+      <h1>BeeBox CSS</h1>
+      <!-- Навигация по уровням -->
+      <div class="level-navigation">
+        <button id="prevLevel" disabled>&lt;</button>
+        <span id="levelIndicator">Уровень 1</span>
+        <button id="nextLevel" disabled>&gt;</button>
+      </div>
+      <p>
+        Используй <code>justify-content</code>, чтобы помочь пчелке попасть на цветок.
+      </p>
+      
+      <ul id="tipsList"></ul>
+
+      <div class="code-editor">
+        <!-- Здесь динамически появится редактор кода с input -->
+      </div>
+
+      <button id="checkButton">Проверить</button>
+
+      <p id="feedback"></p>
+    </div>
+
+    <!-- Правая панель -->
+    <div class="right-panel">
+      <div id="pond">
+        <!-- Контент пчёлки и цветка будет тут вставляться -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>

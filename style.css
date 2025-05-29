@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #c2f4b5;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.left-panel {
+  width: 50%;
+  padding: 30px;
+  background: #d2ffde;
+}
+
+.right-panel {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#pond {
+  position: relative;
+  width: 80%;
+  height: 120px;
+  background: #a2f7a3;
+  border-radius: 20px;
+  overflow: hidden;
+  /* outline: 1px solid red; */
+}
+
+
+
+#bee-row {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  z-index: 2;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Стили для flex layout */
+#bee-row.flex {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+}
+
+
+#bee-row.text-align {
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+  height: 100%; 
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 10px;
+}
+
+.bee {
+  width: 90px;
+  height: 70px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.bee-container {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+}
+
+
+.flower {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+ 
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.flower.center-right {
+  left: 75%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  position: absolute;
+}
+
+
+
+/* Редактор кода */
+.code-editor {
+  background: #e2e2e2;
+  padding: 10px;
+  margin: 20px 0;
+  font-family: monospace;
+}
+
+.editor-line {
+  display: flex;
+  gap: 10px;
+  padding: 2px;
+}
+
+.editor-line input {
+  font-family: monospace;
+  border: none;
+  background: #fff;
+  width: 100%;
+}
+
+.level-navigation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.level-navigation button {
+  padding: 5px 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.level-navigation button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
