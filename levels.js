@@ -35,20 +35,7 @@ export const levels = [
   tips: [
     { code: "margin-left: 10;", description: "Применен для пчелки по умолчанию" }
   ]
-},
-
-{
-  
-  title: "Уровень 4",
-  layout: "custom", 
-  defaultCSS: "padding-left: ;",
-  correctCSS: "padding-left: 70%;", // Не используется
-  flowerPosition: "right",
-  instruction: "Используй padding, чтобы подвинуть пчёлку ближе к правой стороне.",
-  feedback: 'Отлично!',
-  tips: [
-    { code: "margin-left: 10;", description: "Применен для пчелки по умолчанию" }
-  ]
 }
+
 
 ];
