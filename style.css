@@ -21,16 +21,55 @@ body {
   align-items: center;
   justify-content: center;
 }
+.selector-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* чтобы колонки были прижаты вверх */
+  width: 100%;
+  gap: 100px; /* расстояние между колонками */
+}
 
 #pond {
   position: relative;
   width: 80%;
-  height: 120px;
+  height: 120px;  /* базовая высота для большинства уровней */
   background: #a2f7a3;
   border-radius: 20px;
   overflow: hidden;
-  /* outline: 1px solid red; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap; 
 }
+
+/* Для широких уровней */
+#pond.wide {
+  height: 400px;    /* увеличенная высота */
+  flex-wrap: wrap;  
+}
+
+
+.flower.red {
+  position: static !important;
+  transform: none !important;
+  right: auto !important;
+}
+
+.insect-column {
+  display: flex;
+  flex-direction: column;  
+  align-items: flex-start; 
+  gap: 10px;               
+}
+
+.flower-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* чтобы цветки прижались к правому краю */
+  gap: 10px; /* отступы между цветками */
+}
+
 
 
 
@@ -44,7 +83,7 @@ body {
   gap: 20px;
 }
 
-/* Стили для flex layout */
+
 #bee-row.flex {
   display: flex;
   justify-content: flex-start; 
@@ -64,6 +103,8 @@ body {
 }
 
 .bee {
+  z-index: 2;
+  position: relative; 
   width: 90px;
   height: 70px;
   vertical-align: middle;
@@ -82,9 +123,14 @@ body {
   width: 80px;
   height: 80px;
   top: 50%;
- 
   transform: translate(-50%, -50%);
   z-index: 1;
+}
+
+#pond.wide .flower {
+  position: static !important;
+  transform: none !important;
+  margin: 0;
 }
 
 .flower.center-right {
@@ -96,7 +142,6 @@ body {
 
 
 
-/* Редактор кода */
 .code-editor {
   background: #e2e2e2;
   padding: 10px;
@@ -133,4 +178,100 @@ body {
 .level-navigation button:disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+
+/* До 1024px */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .selector-container {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .insect-column,
+  .flower-column {
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  #pond {
+    width: 95%;
+    height: auto;
+    min-height: 200px;
+  }
+
+  #pond.wide {
+    height: auto;
+  }
+
+  .bee,
+  .flower {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* До 768px */
+@media (max-width: 768px) {
+  .code-editor {
+    font-size: 14px;
+  }
+
+  .editor-line {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .editor-line input {
+    font-size: 14px;
+  }
+
+  .level-navigation {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .bee,
+  .flower {
+    width: 50px;
+    height: 50px;
+  }
+
+  .left-panel {
+    padding: 15px;
+  }
+
+  .right-panel {
+    justify-content: flex-start;
+    padding: 15px;
+  }
+}
+
+/* До 480px */
+@media (max-width: 480px) {
+  .bee,
+  .flower {
+    width: 40px;
+    height: 40px;
+  }
+
+  .code-editor {
+    padding: 8px;
+  }
+
+  .editor-line input {
+    width: 100%;
+  }
 }

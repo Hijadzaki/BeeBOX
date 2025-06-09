@@ -2,6 +2,7 @@ export const levels = [
   {
     title: "Уровень 1",
     layout: 'flex',
+    widePond: false, 
     defaultCSS: 'justify-content: ;',
     correctCSS: 'justify-content: center;',
     flowerPosition: 'right', 
@@ -14,6 +15,7 @@ export const levels = [
   {
     title: "Уровень 2",
     layout: 'text-align',
+    widePond: false, // ширина pond (true только для selector-targeting)
     defaultCSS: 'text-align: ;',
     correctCSS: 'center;',
     flowerPosition: 'left',
@@ -27,6 +29,7 @@ export const levels = [
   
   title: "Уровень 3",
   layout: "custom", 
+  widePond: false, // 
   defaultCSS: "margin-left: ;",
   correctCSS: "margin-left: 70%;",
   flowerPosition: "center-right",
@@ -35,7 +38,24 @@ export const levels = [
   tips: [
     { code: "margin-left: 10;", description: "Применен для пчелки по умолчанию" }
   ]
+},
+{
+  title: "Найди пчелу",
+  layout: "selector-targeting",
+  defaultCSS: "",
+  flowerPosition: "right",
+  widePond: true,
+  beeColumnAlign: "flex-start",
+  flowerColumnAlign: "flex-end",
+  beeColors: ["red", "yellow", "blue"],
+  flowerColors: ["red", "yellow", "blue"],
+  targetBeeColor: "yellow", // нужный цвет
+  feedback: 'Отлично!',
+  tips: [
+    { code: ".bee.red", description: "Выбирает красную пчелу" },
+    { code: ".bee.yellow", description: "Выбирает жёлтую пчелу" },
+    { code: ".bee.blue", description: "Выбирает синюю пчелу" }
+  ]
 }
-
 
 ];

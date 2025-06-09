@@ -1,3 +1,5 @@
+import { levels } from './levels.js';
+
 export function updateLevelUI(levelNumber, instruction) {
   const levelIndicator = document.getElementById('levelIndicator');
   const instructionElement = document.querySelector('p'); // Первый параграф в левой панели
@@ -7,7 +9,10 @@ export function updateLevelUI(levelNumber, instruction) {
     return;
   }
 
-  levelIndicator.textContent = `Уровень ${levelNumber}`;
+  levelIndicator.textContent = `Уровень ${levelNumber} из ${levels.length}`;
+
+
+
 
   if (instructionElement) {
     instructionElement.textContent = instruction || '';
