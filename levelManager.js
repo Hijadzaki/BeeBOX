@@ -20,7 +20,10 @@ export function loadLevel(index) {
     console.error('loadLevel: Не найдены необходимые элементы на странице', { pond, editor, feedback, tipsList });
     return;
   }
-
+  // ОЧИСТКА pond перед новой загрузкой
+  pond.innerHTML = '';
+  pond.className = ''; // сброс всех классов, включая wide
+  pond.removeAttribute('data-layout');
   feedback.textContent = '';
 
   const level = levels[index];
@@ -55,8 +58,8 @@ export function loadLevel(index) {
     editorHTML += `<div class="editor-line">${lineNumber++} <span>}</span></div>`;
 
   } else if (level.layout === 'selector-targeting') {
-    editorHTML += `<div class="editor-line">${lineNumber++} <span><input id="userSelector" placeholder=".bee.red" /></span></div>`;
-    editorHTML += `<div class="editor-line">${lineNumber++} <span>{ <input id="userInput" placeholder="justify-content: flex-end;" /> }</span></div>`;
+    editorHTML += `<div class="editor-line">${lineNumber++} <span><input id="userSelector" placeholder=".bee.color" /></span></div>`;
+    editorHTML += `<div class="editor-line">${lineNumber++} <span>{ <input id="userInput" placeholder="left: ;" /> }</span></div>`;
 
   } else {
     console.warn('loadLevel: Неизвестный layout уровня:', level.layout);
@@ -67,21 +70,28 @@ export function loadLevel(index) {
   console.log('loadLevel: Обновлён редактор кода');
 
   
-  if (level.layout === 'flex') {
-    pond.innerHTML = `
-      <img src="img/FlowerYellow.png" alt="Цветок" class="flower" />
-      <div id="bee-row">
-        <img src="img/BeeYellow.png" alt="Пчелка" class="bee" />
-      </div>
-    `;
-  } else if (level.layout === 'text-align') {
-    pond.innerHTML = `
-      <div id="bee-row">
-        <img src="img/BeeYellow.png" alt="Пчелка" class="bee" />
-      </div>
-      <img src="img/FlowerYellow.png" alt="Цветок" class="flower" />
-    `;
-  } else if (level.layout === 'selector-targeting') {
+ if (level.layout === 'flex') {
+  pond.innerHTML = `
+    <img src="img/FlowerYellow.png" alt="Цветок" class="flower" />
+    <div id="bee-row">
+      <img src="img/BeeYellow.png" alt="Пчелка" class="bee" />
+    </div>
+  `;
+} else if (level.layout === 'text-align') {
+  pond.innerHTML = `
+    <div id="bee-row">
+      <img src="img/BeeYellow.png" alt="Пчелка" class="bee" />
+    </div>
+    <img src="img/FlowerYellow.png" alt="Цветок" class="flower" />
+  `;
+} else if (level.layout === 'custom') {
+  pond.innerHTML = `
+    <div id="bee-row">
+      <img src="img/BeeYellow.png" alt="Пчелка" class="bee" />
+    </div>
+    <img src="img/FlowerYellow.png" alt="Цветок" class="flower" />
+  `;
+} else if (level.layout === 'selector-targeting') {
   const beeItems = level.beeColors?.map(color =>
     `<img src="img/Bee${capitalize(color)}.png" class="insect bee ${color}" />`
   ).join('') || '';
@@ -101,13 +111,12 @@ export function loadLevel(index) {
     </div>
   `;
 
-
-    if (level.widePond) {
-      pond.classList.add('wide');
-    } else {
-      pond.classList.remove('wide');
-    }
+  if (level.widePond) {
+    pond.classList.add('wide');
+  } else {
+    pond.classList.remove('wide');
   }
+}
 
   console.log('loadLevel: Обновлён pond.innerHTML');
 
