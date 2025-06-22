@@ -5,6 +5,21 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+function mapAlign(value) {
+  switch ((value || '').toLowerCase()) {
+    case 'left':
+      return 'flex-start';
+    case 'right':
+      return 'flex-end';
+    case 'flex-start':
+    case 'flex-end':
+    case 'center':
+      return value;
+    default:
+      return 'center';
+  }
+}
+
 export let currentLevelIndex = 0;
 
 export function loadLevel(index) {
@@ -100,12 +115,15 @@ export function loadLevel(index) {
     `<img src="img/Flower${capitalize(color)}.png" class="flower ${color}" />`
   ).join('') || '';
 
+  const beeColAlign = mapAlign(level.beeColumnAlign || 'center');
+  const flowerColAlign = mapAlign(level.flowerColumnAlign || 'center');
+
   pond.innerHTML = `
     <div class="selector-container">
-      <div class="insect-column" style="align-items: ${level.beeColumnAlign || 'center'};">
+      <div class="insect-column" style="align-items: ${beeColAlign};">
         ${beeItems}
       </div>
-      <div class="flower-column" style="align-items: ${level.flowerColumnAlign || 'center'};">
+      <div class="flower-column" style="align-items: ${flowerColAlign};">
         ${flowerItems}
       </div>
     </div>
@@ -127,6 +145,9 @@ export function loadLevel(index) {
 
   // Позиция цветка (для других layout ов)
   setFlowerPosition(level.flowerPosition);
+
+  // Устанавливаем горизонтальное выравнивание пчёлок и цветков по цвету, если заданы
+  applyEntityAlignments(level);
 
   // Обновление UI
   updateLevelUI(index + 1, level.instruction);
@@ -173,13 +194,64 @@ export function applyStyleToBeeRow(layout, cssText) {
   } else if (layout === 'text-align') {
     beeRow.style.display = 'inline-block';
     beeRow.style.width = '100%';
+    beeRow.style.height = '100%';
+    beeRow.style.position = 'relative';
+    beeRow.style.top = '50%';
+    beeRow.style.transform = 'translateY(-50%)';
     beeRow.style.textAlign = 'center';
   } else if (layout === 'custom') {
     beeRow.style.display = 'block';
+    beeRow.style.position = 'relative';
+    beeRow.style.top = '50%';
+    beeRow.style.transform = 'translateY(-50%)';
     const match = cssText.match(/(margin-left|padding-left):\s*([^;]+);?/);
     if (match) {
       beeRow.style[match[1]] = match[2].trim();
     }
+  }
+}
+
+// Устанавливает горизонтальное выравнивание пчёл и цветков по цвету
+function applyEntityAlignments(level) {
+  const setAlign = (selectorBase, alignMap) => {
+    Object.entries(alignMap).forEach(([color, align]) => {
+      const el = document.querySelector(`${selectorBase}.${color}`);
+      if (!el) return;
+
+      el.style.alignSelf = '';
+      el.style.marginLeft = '';
+      el.style.marginRight = '';
+      el.style.left = '';
+      el.style.right = '';
+
+      switch (align) {
+        case 'left':
+          el.style.alignSelf = 'flex-start';
+          break;
+        case 'center':
+          el.style.alignSelf = 'center';
+          break;
+        case 'right':
+          el.style.alignSelf = 'flex-end';
+          break;
+        case 'flex-start':
+          el.style.alignSelf = 'flex-start';
+          break;
+        case 'flex-end':
+          el.style.alignSelf = 'flex-end';
+          break;
+        default:
+          console.warn(`Неизвестное выравнивание "${align}" для ${selectorBase}.${color}`);
+      }
+    });
+  };
+
+  if (level.beeAlign) {
+    setAlign('.bee', level.beeAlign);
+  }
+
+  if (level.flowerAlign) {
+    setAlign('.flower', level.flowerAlign);
   }
 }
 

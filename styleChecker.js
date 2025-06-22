@@ -72,6 +72,34 @@ export function applyStyle() {
 
     // Проверка попадания
     requestAnimationFrame(() => {
+      if (level.checkAllBees) {
+        const colors = level.beeColors || [];
+        let allOnFlowers = true;
+        colors.forEach(color => {
+          const beeEl = document.querySelector(`.bee.${color}`);
+          const flowerEl = document.querySelector(`.flower.${color}`);
+          if (!beeEl || !flowerEl) {
+            allOnFlowers = false;
+            return;
+          }
+          const b = beeEl.getBoundingClientRect();
+          const f = flowerEl.getBoundingClientRect();
+          const dist = Math.abs((b.left + b.width / 2) - (f.left + f.width / 2));
+          if (dist >= 20) {
+            allOnFlowers = false;
+          }
+        });
+
+        if (allOnFlowers) {
+          feedback.textContent = level.feedback;
+          feedback.style.color = 'green';
+        } else {
+          feedback.textContent = 'Не все пчёлки сидят на цветочках.';
+          feedback.style.color = 'orange';
+        }
+        return;
+      }
+
       let bee, flower;
 
       if (level.targetBeeColor) {
@@ -119,6 +147,18 @@ export function applyStyle() {
   beeRow.style.cssText = '';
   if (level.layout === 'flex') {
     beeRow.style.display = 'flex';
+  } else if (level.layout === 'text-align') {
+    beeRow.style.display = 'inline-block';
+    beeRow.style.width = '100%';
+    beeRow.style.height = '100%';
+    beeRow.style.position = 'relative';
+    beeRow.style.top = '50%';
+    beeRow.style.transform = 'translateY(-50%)';
+  } else if (level.layout === 'custom') {
+    beeRow.style.display = 'block';
+    beeRow.style.position = 'relative';
+    beeRow.style.top = '50%';
+    beeRow.style.transform = 'translateY(-50%)';
   }
 
   cssText

@@ -1,12 +1,19 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
   background: #c2f4b5;
+  overflow-x: hidden;
 }
 
 .container {
   display: flex;
-  height: 100vh;
+  min-height: 100dvh;
 }
 
 .left-panel {
@@ -22,11 +29,9 @@ body {
   justify-content: center;
 }
 .selector-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* чтобы колонки были прижаты вверх */
+  position: relative;
   width: 100%;
-  gap: 100px; /* расстояние между колонками */
+  height: 100%;
 }
 
 #pond {
@@ -56,18 +61,22 @@ body {
   right: auto !important;
 }
 
-.insect-column {
+.insect-column,
+.flower-column {
+  position: absolute;
+  inset: 0;
+  width: 100%;
   display: flex;
-  flex-direction: column;  
-  align-items: flex-start; 
-  gap: 10px;               
+  flex-direction: column;
+  gap: 10px;
+}
+
+.insect-column {
+  align-items: flex-start;
 }
 
 .flower-column {
-  display: flex;
-  flex-direction: column;
   align-items: flex-end; /* чтобы цветки прижались к правому краю */
-  gap: 10px; /* отступы между цветками */
 }
 
 
@@ -193,17 +202,14 @@ body {
     padding: 20px;
   }
 
+  /* Адаптация расположения элементов в selector-targeting */
   .selector-container {
-    flex-direction: column;
-    gap: 40px;
-    align-items: center;
+    position: relative;
   }
 
   .insect-column,
   .flower-column {
-    flex-direction: row;
-    justify-content: center;
-    gap: 15px;
+    gap: 10px;
   }
 
   #pond {
@@ -273,5 +279,26 @@ body {
 
   .editor-line input {
     width: 100%;
+  }
+}
+/* Горизонтальная ориентация смартфонов */
+@media (max-width: 768px) and (orientation: landscape) {
+  .container {
+    flex-direction: row;
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 50%;
+    padding: 10px;
+  }
+
+  .level-navigation {
+    flex-direction: row;
+  }
+
+  .insect-column,
+  .flower-column {
+    gap: 10px;
   }
 }
