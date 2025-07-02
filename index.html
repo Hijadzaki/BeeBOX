@@ -12,7 +12,20 @@
 <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
-  <div class="container">
+  <div id="menu" class="menu-screen">
+    <h1>BeeBox CSS</h1>
+    <button id="playBtn">Играть</button>
+    <button id="levelsBtn">Уровни</button>
+    <button id="exitBtn">Выход</button>
+  </div>
+
+  <div id="levelSelect" class="level-select hidden" style="display:none;">
+    <h2>Выберите уровень</h2>
+    <ul id="levelsList"></ul>
+    <button id="closeLevelSelect">Закрыть</button>
+  </div>
+
+  <div class="container hidden">
     <!-- Левая панель -->
     <div class="left-panel">
       <h1>BeeBox CSS</h1>

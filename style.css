@@ -11,6 +11,100 @@ body {
   overflow-x: hidden;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.menu-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  gap: 20px;
+}
+
+/* Стиль элементов главного меню */
+.menu-screen h1 {
+  font-size: 4rem;
+  margin: -80px 0 40px;
+}
+
+.menu-screen button {
+  font-size: 1.5rem;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffbf00;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.menu-screen button:hover {
+  background-color: #ffaa00;
+}
+
+.level-select {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.level-select h2 {
+  color: #fff;
+  margin: 0 0 10px;
+  font-size: 2rem;
+}
+
+.level-select ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  max-height: 60vh;
+  overflow-y: auto;
+  width: 80%;
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.level-select li {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.level-select li:hover {
+  background: #eee;
+}
+
+.level-select button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffbf00;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.level-select button:hover {
+  background-color: #ffaa00;
+}
+
 .container {
   display: flex;
   min-height: 100dvh;

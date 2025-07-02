@@ -191,6 +191,20 @@ export const levels = [
     { code: ".bee.yellow", description: "Выбирает жёлтую пчелу" },
     { code: ".bee.blue", description: "Выбирает синюю пчелу" }
   ]
+},
+
+{
+  title: "Уровень 11",
+  layout: "custom",
+  widePond: false,
+  defaultCSS: "margin-left: ;",
+  correctCSS: "margin-left: 50%;",
+  flowerPosition: "center",
+  instruction: "Используй margin-left, чтобы поставить пчёлку точно под цветком.",
+  feedback: 'Отлично!',
+  tips: [
+    { code: 'margin-left', description: 'Смещает элемент вправо' }
+  ]
 }
 
 ];
